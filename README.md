@@ -42,8 +42,9 @@ If you use this code as part of a publication, please cite original authors:
 # Notes
 
 - Due to this project is part of my Final Degree Project, TensorFlow 1.14 (CPU version) is used and the TF
-  computation graph is rebuilt for each image. 
-  I tried the migration to Tensorflow 2 and Keras API but I couldn't use correctly pretrained weights.
+  computation graph is rebuilt for each image. Several warning related with Conv2D layer appears for this reason.
+  
+-  I tried the migration to Tensorflow 2 and Keras API but I couldn't use correctly pretrained weights.
   Moreover I have tried to create several models without destroying the previous ones 
   and I have been unable to solve the problems caused by the existence of several graphs
   (the undesired modification of the output tensor operations).
