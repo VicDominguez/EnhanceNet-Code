@@ -1,15 +1,15 @@
 # EnhanceNet
 
-This is a pre-trained reference implementation of ENet-PAT from "EnhanceNet:
+This is a pre-trained implementation of ENet-PAT from "EnhanceNet:
 Single Image Super-Resolution through Automated Texture Synthesis" for a
-magnification ratio of 4.
+magnification ratio of 4, based on [reference implementation](https://github.com/msmsajjadi/EnhanceNet-Code)
 
-It comes with a script which takes care of installing all necessary packages
-inside a virtual environment, i.e. all installations take place inside the
-folder and can be simply uninstalled by deleting the folder. Advanced users
-may install the packages directly (see FAQ section).
+It comes with a requirements file which takes care of installing all necessary packages
+using pip.
 
-If you use this code as part of a publication, please cite:
+This implementation provides a more human-readable code and support to base64 encoded images saved as txt files.
+
+If you use this code as part of a publication, please cite original authors:
 
 ```
 @inproceedings{enhancenet,
@@ -26,12 +26,12 @@ If you use this code as part of a publication, please cite:
 # How-To
 
 ## Upscale images 4x
-  - Copy all high-resolution images to the input directory.
-  - Enter the following into a terminal window: `./run.sh`
+  - Copy all high-resolution images to the input directory as image file or base64 string file.
+  - Go to `main.py` and use one of 4 modes avalibles on `use_model.py` for each image,  
+  providing the path of input images and the desired output path.
 
-The images will be first downscaled and then upscaled with EnhanceNet.
 
-## Requirements:
+## Prerequirements:
   - an internet connection (for the first run only, if you do not have all
     packages)
   - python (<http://python.org>)
@@ -41,59 +41,26 @@ The images will be first downscaled and then upscaled with EnhanceNet.
 
 # Notes
 
-- All images in the input folder are downscaled 4x and then upscaled via bicubic
-  interpolation and EnhanceNet-PAT.
+- Due to this project is part of my Final Degree Project, TensorFlow 1.14 (CPU version) is used and the TF
+  computation graph is rebuilt for each image. 
+  I tried the migration to Tensorflow 2 and Keras API but I couldn't use correctly pretrained weights.
+  Moreover I have tried to create several models without destroying the previous ones 
+  and I have been unable to solve the problems caused by the existence of several graphs
+  (the undesired modification of the output tensor operations).
 
-- Existing files in the output directory will *not* be replaced.
+- All images in the input folder are upscaled via bicubic interpolation and EnhanceNet-PAT. 
+  A large ammount of memory is needed for prevent Out of Memory errors 
+  and the program could crash resizing images larger than 512x512.
+  The original authors noticed that 1000x1000 input images or more needed a lot of RAM.
+
 
 - The first run may take a while, since all necessary packages are installed.
   Subsequent runs are much faster and do not necessitate an internet connection.
 
-- For compatibility reasons, the CPU version of TensorFlow is used and the TF
-  computation graph is rebuilt for each image, so this reference implementation
-  does not reflect the runtime performance of our model and is not suitable for
+
+- This reference implementation does not reflect the runtime performance of our model and is not suitable for
   runtime benchmarks.
 
-# FAQ
-
-- Upon calling `./run.sh`, the message `Permission denied` appears.
-
-  Solution: Enter `chmod 544 run.sh enhancenet.py`, then retry the run command.
-
-- I already have TensorFlow and/or don't want to run the virtualenv script.
-
-  Solution: Install the necessary packages (see `run.sh`), then run
-  `python enhancenet.py`
-
-- I have CUDA and want this to be faster for large images.
-
-  Solution: In run.sh, add "-gpu" to the line with tensorflow:
-  `tensorflow-gpu=0.12.0`
-
-- I don't want to downscale the images before upscaling, I want the actual
-  upscaled version of 4x the size of the input images.
-
-  Solution: In `enhancenet.py`, set the scaling factor to 1:
-  ```python
-  imgs = loadimg('input/'+fn, 1)
-  ```
-
-  Please note that the model was specifically trained on input images
-  downsampled with PIL, i.e. it won't perform as well on images
-  downscaled with another method. Furthermore, it is not suitable for
-  upscaling noisy or compressed images, since artifacts in the input
-  will be heavily amplified. For comparisons on such images, the
-  model needs to be trained on such a dataset.
-
-- I get the error message `std::bad_alloc`.
-
-  Solution: You are likely running out of memory! Please note that even
-  1000x1000 input images need a lot of RAM (when the input is not downsampled).
-
-- Something goes wrong and I am left with an error message.
-
-  Solution: Please email us, see below (even if you solved it, so we can add it
-  to the FAQ).
 
 For any questions, comments or help to get it to run, please don't hesitate to
-mail us: <msajjadi@tue.mpg.de>
+mail us: [flugplatzcode@gmail.com](mailto:flugplatzcode@gmail.com)
