@@ -36,7 +36,6 @@ def preprocess_image_to_model(img):
 def numpy_array_to_image(img):
     img *= 255.0
     img = (img.clip(0, 255) + 0.5).astype(np.uint8)
-
     if len(np.shape(img)) > 2 and np.shape(img)[2] == 1:
         img = np.reshape(img, (np.shape(img)[0], np.shape(img)[1]))
     img = img.astype(np.uint8)

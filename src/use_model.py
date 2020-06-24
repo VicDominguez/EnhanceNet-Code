@@ -1,5 +1,5 @@
-from enhancenet import inference
-from image import *
+from model import inference
+from preprocess import *
 
 
 def _get_upsample_raw(image):
