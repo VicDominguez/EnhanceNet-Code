@@ -23,15 +23,15 @@ def not_found(error):
 @app.route('/TFG-Computadores/api-upsample/upsample', methods=['POST'])
 def make_upsample():
     if not request.json or not 'image' in request.json:
-        abort(400)
+        abort(402)
     image = request.json['image']
     result = check_image(image)
     if result is not None:
         result = str(resize_from_b64_to_b64(image))
     else:
-        abort(401)
+        abort(400)
 
-    return jsonify({"upsampled": result}), 400
+    return jsonify({"upsampled": result}), 200
 
 
 if __name__ == "__main__":
