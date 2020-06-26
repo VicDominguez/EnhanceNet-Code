@@ -2,7 +2,7 @@
 
 This is a pre-trained implementation of ENet-PAT from "EnhanceNet:
 Single Image Super-Resolution through Automated Texture Synthesis" for a
-magnification ratio of 4, based on [reference implementation](https://github.com/msmsajjadi/EnhanceNet-Code)
+magnification ratio of 4, based on [reference implementation](https://github.com/msmsajjadi/EnhanceNet-Code).
 
 It comes with a requirements file which takes care of installing all necessary packages
 using pip.
@@ -61,6 +61,9 @@ If you use this code as part of a publication, please cite original authors:
 
 - This reference implementation does not reflect the runtime performance of our model and is not suitable for
   runtime benchmarks.
+  
+- This version adds API suport using Flask for use in servers.
+  Non API version is provided [here](https://github.com/VicDominguez/EnhanceNet-Code/tree/27c7f0659befd8aacdb76f0c612332269aa5a51e)
 
 
 For any questions, comments or help to get it to run, please don't hesitate to

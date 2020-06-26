@@ -56,9 +56,9 @@ def save_image_to_base64_file(img, path):
         file.write(str(my_string, "utf-8"))
 
 
-def save_image_to_base64_string(img):
+def save_image_to_base64_string(img, img_format="JPEG"):
     im = numpy_array_to_image(img)
     imgByteArr = io.BytesIO()
-    im.save(imgByteArr, format='JPEG')
+    im.save(imgByteArr, format=img_format)
     imgByteArr = imgByteArr.getvalue()
     return base64.b64encode(imgByteArr)
