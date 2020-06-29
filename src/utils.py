@@ -2,24 +2,26 @@ import numpy as np
 import pathlib
 
 PER_CHANNEL_MEANS = np.array([0.47614917, 0.45001204, 0.40904046])
-_weights_path = pathlib.Path("./weights")
+_ruta_pesos = pathlib.Path("./weights")
 
-input_folder = pathlib.Path("../input")
-output_folder = pathlib.Path("../output")
+_carpeta_entrada = pathlib.Path("../input")
+_carpeta_salida = pathlib.Path("../output")
 
 
-def _path_2_string(path):
+def _ruta_a_string(path):
     """Convert Path object to absolute path string."""
     return str(path.resolve())
 
 
-def get_weights_path():
-    return _path_2_string(_weights_path)
+def obtener_ruta_pesos():
+    return _ruta_a_string(_ruta_pesos)
 
 
-def get_input_path(file):
-    return (input_folder / file).resolve()
+def obtener_ruta_archivo_entrada(archivo):
+    """Devuelve la ruta para un nombre de archivo de entrada"""
+    return (_carpeta_entrada / archivo).resolve()
 
 
-def get_output_path(file):
-    return (output_folder / file).absolute()
+def obtener_ruta_archivo_salida(archivo):
+    """Devuelve la ruta para un nombre de archivo de salida"""
+    return (_carpeta_salida / archivo).absolute()

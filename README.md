@@ -1,70 +1,34 @@
-# EnhanceNet
+# Enhance Net (TFG-Computadores)
 
-This is a pre-trained implementation of ENet-PAT from "EnhanceNet:
-Single Image Super-Resolution through Automated Texture Synthesis" for a
-magnification ratio of 4, based on [reference implementation](https://github.com/msmsajjadi/EnhanceNet-Code).
+For English version, look [here](https://github.com/VicDominguez/EnhanceNet-TFG/tree/91058eba0ebbcd1f126d441ec15ef3987a3caa5f).
 
-It comes with a requirements file which takes care of installing all necessary packages
-using pip.
+Esta es una implementación del modelo ENet-PAT expuesto en el paper "EnhanceNet:
+Single Image Super-Resolution through Automated Texture Synthesis" con un ratio de ampliación de 4; basada en la
+[implementación original](https://github.com/msmsajjadi/EnhanceNet-Code), de la que recupera sus pesos.
 
-This implementation provides a more human-readable code and support to base64 encoded images saved as txt files.
+Asi mismo trae un archivo (requisitos.txt) de dependencias para instalarlas mediante pip. 
+Se aconseja usar un entorno virtual. 
 
-If you use this code as part of a publication, please cite original authors:
+Está implementación, además de presentar un código en castellano, provee una implementación más legible y utilizable
+mediante una simple API creada con Flask. Por otra parte, incluye soporte para imágenes codificadas en base 64, presentes
+en mi Trabajo de Fin de Grado.
 
-```
-@inproceedings{enhancenet,
-  title={{EnhanceNet: Single Image Super-Resolution through Automated Texture Synthesis}},
-  author={Sajjadi, Mehdi S. M. and Sch{\"o}lkopf, Bernhard and Hirsch, Michael},
-  booktitle={Computer Vision (ICCV), 2017 IEEE International Conference on},
-  pages={4501--4510},
-  year={2017},
-  organization={IEEE},
-  url={https://arxiv.org/abs/1612.07919/}
-}
-```
+# Notas
 
-# How-To
+- Se ha reutilizado la implementación original debido a que me fue imposible migrar la implementación a Tensorflow 2 y 
+Keras manteniendo la compatibilidad de los pesos originales. Por tanto, se usa Tensorflow 1.14 (versión CPU) y el grafo
+de ejecución es creado de nuevo en cada instancia debido a que fui incapaz de solucionar 
+los problemas de modificación indeseada de las variables del grafo que provoca la coexistencia de los mismos.
 
-## Upscale images 4x
-  - Copy all high-resolution images to the input directory as image file or base64 string file.
-  - Go to `main.py` and use one of 4 modes avalibles on `use_model.py` for each image,  
-  providing the path of input images and the desired output path.
+- Las imágenes son reescaladas mediante interpolación bicúbica y el uso de la propia red.
 
+- La implementación no es tolerante a los errores OOM (Out Of Memory), por lo que **debe** 
+usarse en un equipo con gran cantidad de ram disponible. Con 4GB de RAM la ampliación de imágenes 
+con resoluciones superiores a 256x256 no está garantizanda, así mismo con 8GB de RAM e imágenes superiores a 512x512.
 
-## Prerequirements:
-  - an internet connection (for the first run only, if you do not have all
-    packages)
-  - python (<http://python.org>)
-  - the following packages, which usually come with Python)
-      - pip (<https://pip.pypa.io/en/stable/installing/>)
-      - virtualenv (`pip install --user virtualenv`)
-
-# Notes
-
-- Due to this project is part of my Final Degree Project, TensorFlow 1.14 (CPU version) is used and the TF
-  computation graph is rebuilt for each image. Several warning related with Conv2D layer appears for this reason.
+- La implementación, al estar basada en la original, no es significativa en tiempo de cómputo ni de memoria, por lo que 
+sólo **debe** de usarse en entornos de desarrollo y nunca en entornos de ejecución y/o de benchmarks.
   
--  I tried the migration to Tensorflow 2 and Keras API but I couldn't use correctly pretrained weights.
-  Moreover I have tried to create several models without destroying the previous ones 
-  and I have been unable to solve the problems caused by the existence of several graphs
-  (the undesired modification of the output tensor operations).
+- La versión anterior (sin API y en inglés) está disponible [aqui](https://github.com/VicDominguez/EnhanceNet-Code/tree/27c7f0659befd8aacdb76f0c612332269aa5a51e).
 
-- All images in the input folder are upscaled via bicubic interpolation and EnhanceNet-PAT. 
-  A large ammount of memory is needed for prevent Out of Memory errors 
-  and the program could crash resizing images larger than 512x512.
-  The original authors noticed that 1000x1000 input images or more needed a lot of RAM.
-
-
-- The first run may take a while, since all necessary packages are installed.
-  Subsequent runs are much faster and do not necessitate an internet connection.
-
-
-- This reference implementation does not reflect the runtime performance of our model and is not suitable for
-  runtime benchmarks.
-  
-- This version adds API suport using Flask for use in servers.
-  Non API version is provided [here](https://github.com/VicDominguez/EnhanceNet-Code/tree/27c7f0659befd8aacdb76f0c612332269aa5a51e)
-
-
-For any questions, comments or help to get it to run, please don't hesitate to
-mail us: [flugplatzcode@gmail.com](mailto:flugplatzcode@gmail.com)
+Para otras cuestiones, no dudes en enviarme un correo a [flugplatzcode@gmail.com](mailto:flugplatzcode@gmail.com).
