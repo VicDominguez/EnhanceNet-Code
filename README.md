@@ -2,14 +2,14 @@
 
 For English version, look [here](https://github.com/VicDominguez/EnhanceNet-TFG/tree/91058eba0ebbcd1f126d441ec15ef3987a3caa5f).
 
-Esta es una implementación del modelo ENet-PAT expuesto en el paper "EnhanceNet:
-Single Image Super-Resolution through Automated Texture Synthesis" con un ratio de ampliación de 4; basada en la
+Esta es una implementación del modelo ENet-PAT con un ratio de ampliación de 4; expuesto en el paper "EnhanceNet:
+Single Image Super-Resolution through Automated Texture Synthesis" y basada en 
 [implementación original](https://github.com/msmsajjadi/EnhanceNet-Code), de la que recupera sus pesos.
 
-Asi mismo trae un archivo (requisitos.txt) de dependencias para instalarlas mediante pip. 
+Dispone de un archivo de dependencias (requisitos.txt) para instalarlas mediante pip. 
 Se aconseja usar un entorno virtual. 
 
-Está implementación, además de presentar un código en castellano, provee una implementación más legible y utilizable
+Esta implementación, además de presentar un código en castellano, provee una implementación más legible y utilizable
 mediante una simple API creada con Flask. Por otra parte, incluye soporte para imágenes codificadas en base 64, presentes
 en mi Trabajo de Fin de Grado.
 

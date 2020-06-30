@@ -39,7 +39,6 @@ def _numpy_array_a_imagen(imagen):
     imagen = (imagen.clip(0, 255) + 0.5).astype(np.uint8)
     if len(np.shape(imagen)) > 2 and np.shape(imagen)[2] == 1:
         imagen = np.reshape(imagen, (np.shape(imagen)[0], np.shape(imagen)[1]))
-    # imagen = imagen.astype(np.uint8)
     return Image.fromarray(imagen)
 
 

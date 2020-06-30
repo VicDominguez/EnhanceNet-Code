@@ -25,7 +25,7 @@ def not_found(error):
 
 
 """Función que llama al controlador del modelo revisando los parámetros. Necesita una petición con el campo
-imagen y la imagen codificada en base64 y revuelve la imagen codificada en base64"""
+imagen y la imagen codificada en base64 y devuelve la imagen codificada en base64 en el campo imagen_ampliada"""
 
 
 @app.route('/TFG-Computadores/api-aumento/aumento', methods=['POST'])

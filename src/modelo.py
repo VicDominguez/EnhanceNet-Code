@@ -1,6 +1,7 @@
 import tensorflow as tf
 from utils import PER_CHANNEL_MEANS, obtener_ruta_pesos
 
+# Silenciamos los errores de depreciación de tf.contrib.layers.convolution2d
 tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
 
 
