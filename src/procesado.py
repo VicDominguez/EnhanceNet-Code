@@ -34,7 +34,8 @@ def preprocesar_imagen(imagen):
 
 
 def _numpy_array_a_imagen(imagen):
-    # Multiplicamos el rango por 255 y lo cortamos a 0-255 pasa pasarlo a entero de 1 byte sin signo
+    # Multiplicamos el rango por 255 y lo cortamos a 0-255
+    # para pasarlo a entero de 1 byte sin signo
     imagen *= 255.0
     imagen = (imagen.clip(0, 255) + 0.5).astype(np.uint8)
     if len(np.shape(imagen)) > 2 and np.shape(imagen)[2] == 1:

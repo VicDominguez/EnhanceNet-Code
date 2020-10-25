@@ -24,8 +24,9 @@ def not_found(error):
     return make_response(jsonify({'error': 'Not found'}), 404)
 
 
-"""Función que llama al controlador del modelo revisando los parámetros. Necesita una petición con el campo
-imagen y la imagen codificada en base64 y devuelve la imagen codificada en base64 en el campo imagen_ampliada"""
+"""Función que llama al controlador del modelo revisando los parámetros. 
+Necesita una petición con el campo imagen y la imagen codificada en base64 
+y evuelve la imagen codificada en base64 en el campo imagen_ampliada"""
 
 
 @app.route('/TFG-Computadores/api-aumento/aumento', methods=['POST'])
@@ -35,7 +36,8 @@ def realizar_aumento():
     imagen = request.json['imagen']
     tipo_imagen = comprueba_imagen(imagen)
     if tipo_imagen is not None:
-        resultado = ampliar_desde_string_base64_a_string_base64(imagen, formato_imagen=tipo_imagen)
+        resultado = ampliar_desde_string_base64_a_string_base64(
+            imagen, formato_imagen=tipo_imagen)
         return jsonify({"imagen_ampliada": str(resultado)}), 200
     else:
         abort(400)
